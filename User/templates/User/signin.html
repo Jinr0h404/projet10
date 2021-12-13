@@ -1,0 +1,48 @@
+{% extends 'PurBeurre/base.html' %}
+
+{% block content %}
+{% load static %}
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Du gras, oui, mais de qualité!</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+
+                    </div>
+                </div>
+            </div>
+        </header>
+<!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h2 class="mt-0">Se connecter</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5 error">{{ message }}</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                    <div class="col-lg-6">
+                        <div class="col-lg-8 align-self-baseline">
+                            <!-- ajout d'un formulaire pour l'inscription que l'on récupère depuis la vue-->
+                            <form method="POST">
+                                <table>
+                                    {{ form.as_table }}
+                                    {% csrf_token %}
+                                </table>
+                                <input name="signin" type="submit" value="Se connecter" />
+                            </form>
+                            <p>Pas encore membre ? <a href="/user/signup">Inscrivez-vous maintenant !</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+{% endblock %}

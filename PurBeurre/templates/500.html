@@ -1,0 +1,59 @@
+{% extends 'PurBeurre/base.html' %}
+
+{% block content %}
+{% load static %}
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Du gras, oui, mais de qualité!</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline div_search">
+                        <h2 class="text-white-75 mb-5">Trouver un produit de substitution pour ceux que vous consommez tous les jours</h2>
+
+                        <form class="col-md-6 col-md-offset-3 text-center form_search" action="{% url 'product-search'%}" method="get" accept-charset="utf-8">
+                            <div class="form-group div_form_search">
+                                <input id="searchForm" class="form-control" placeholder="Produit" name="query">
+                                <input type="submit" value="chercher" />
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">désolé, suite à un problème technique, votre demande n'a pu aboutir</h2>
+                <hr class="divider" />
+            </div>
+        </section>
+        <!-- Contact-->
+
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h2 class="mt-0">Contactez-nous !</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Vous souhaitez un renseignement ou peut être nous donner votre avis, n'hésitez pas</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                        <i class="bi-phone fs-2 mb-3 text-muted"></i>
+                        <div>+1 (555) 123-4567</div>
+                    </div>
+                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                        <i class="bi-envelope fs-2 mb-3 text-muted"></i>
+                        <div>coletteremy@purebeurre.com</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

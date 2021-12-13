@@ -1,0 +1,74 @@
+{% extends 'PurBeurre/base.html' %}
+
+{% block content %}
+{% load static %}
+        <!-- Call to action-->
+        <section class="page-section bg-dark text-white">
+            <div class="container px-4 px-lg-5 text-center">
+                    <h2 class="mb-4">Vos substituts favoris</h2>
+            </div>
+        </section>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Retrouver ici vos aliments favoris:</h2>
+                <hr class="divider" />
+            </div>
+        </section>
+        <!-- Portfolio-->
+        <div id="portfolio">
+            <div class="container-fluid p-5">
+                <div class="row g-0">
+                    {% for product in page_obj %}
+                        <div class="col-lg-4 col-sm-6 p-5 text-center portfolioProduct card-deck">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-right">
+                                {% if product.substitute_id.nutriscore == 'A' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'B' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'C' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'D' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'E' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% endif %}
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <a class="portfolio-box" href="../product/product_info-{{ product.substitute_id.id }}" title="{{ product.substitute_id.product_name }}" target="_blank">
+                                    <img class="img-responsive" src="{{ product.substitute_id.product_image }}" alt="{{ product.substitute_id.product_name }}">
+                                    <div class="portfolio-box-caption">
+                                        <div class="project-category text-white-50">Voir fiche produit</div>
+                                        <div class="project-name">{{ product.substitute_id.product_name }}</div>
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="card-footer">
+                                    <p>remplace l'aliment: {{ product.product_id.product_name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+                        {% empty %}
+                            <p>Vous n'avez pas encore enregistré votre substitut préféré.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+            <nav aria-label="">
+                <ul class="pager">
+                    {% if page_obj.has_previous %}
+                        <a href="?query={{query}}&page=1">« première</a>
+                        <li><a href="?query={{query}}&page={{ page_obj.previous_page_number }}">Précédent</a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <li><a href="?query={{query}}&page={{ page_obj.next_page_number }}">Suivant</a></li>
+                        <a href="?query={{query}}&page={{ page_obj.paginator.num_pages }}">dernière »</a>
+                    {% endif %}
+                </ul>
+            </nav>
+{% endblock %}

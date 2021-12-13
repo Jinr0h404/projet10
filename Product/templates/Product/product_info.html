@@ -1,0 +1,59 @@
+{% extends 'PurBeurre/base.html' %}
+
+{% block content %}
+{% load static %}
+        <!-- Call to action-->
+        <section class="page-section bg-dark text-white">
+            <div class="container px-4 px-lg-5 text-center">
+                {% for product in query_id %}
+                    <h2 class="mb-4">{{product.product_name}}</h2>
+                    <img class="img-responsive" src="{{ product.product_image }}" alt="{{ product.product_name }}">
+                {% endfor %}
+            </div>
+        </section>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-6 col-md-6 text-center">
+                        <div class="mt-5">
+                            {% for product in query_id %}
+                            {% if product.nutriscore == 'A' %}
+                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-a.svg' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'B' %}
+                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-b.svg' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'C' %}
+                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-c.svg' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'D' %}
+                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-d.svg' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'E' %}
+                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-e.svg' %}" alt="{{ product.product_name }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 text-center">
+                        <div class="mt-5">
+                            <h3 class="h4 mb-2">Repères nutritionnels pour 100g:</h3>
+                            <p class="text-muted mb-0">Graisses: {{product.fat}}</p>
+                            <p class="text-muted mb-0">Graisses Saturées: {{product.saturated_fat}}</p>
+                            <p class="text-muted mb-0">Sel: {{product.salt}}</p>
+                            <p class="text-muted mb-0">Sucre: {{product.sugar}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row gx-4 gx-lg-5 m-5">
+                {% for product in query_id %}
+                <div class="col-4">
+                </div>
+                <div class="col-8 align-self-baseline">
+                    <a class="btn btn-primary btn-xl" href="{{ product.url }}" target="_blank">Voir la fiche d'Open Food Facts</a>
+                </div>
+                <div class="col-4">
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
