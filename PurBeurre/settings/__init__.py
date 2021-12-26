@@ -1,3 +1,4 @@
+
 """
 Django settings for PurBeurre project.
 
@@ -25,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-1c-u#2k=xm@*$pws%w=mh
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'PurBeurre.urls'
