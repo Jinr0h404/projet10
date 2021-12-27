@@ -18,11 +18,15 @@ from django.urls import path
 from django.contrib import admin
 from .views import legal_notice, index
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
     path('content/', admin.site.urls),
     path('', index, name="index"),
     path('favoris/', include("Favorite.urls")),
     path('user/', include("User.urls")),
     path('product/', include("Product.urls")),
-    path('legal', legal_notice, name="home-legal")
+    path('legal', legal_notice, name="home-legal"),
+    path('sentry-debug/', trigger_error),
 ]
