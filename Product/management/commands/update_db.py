@@ -24,4 +24,3 @@ class Command(BaseCommand):
                 old_product.salt=str(i["salt"])
                 old_product.sugar=str(i["sugar"])
                 old_product.save()
-		print('update finish')
