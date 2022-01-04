@@ -4,13 +4,16 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
 
 class TestSearch(StaticLiveServerTestCase):
     def test_search_navbar(self):
         """tests the user's navigation when searching through the search bar in the navigation menu"""
-        self.s = Service("Product/tests/functional_tests/chromedriver")
-        self.browser = webdriver.Chrome(service=self.s)
+        self.s = Service(executable_path="/home/archer/projet10/Product/tests/functional_tests/chromedriver")
+        self.chrome_options = Options()
+        self.chrome_options.add_argument("--headless")
+        self.browser = webdriver.Chrome(service=self.s, options=self.chrome_options)
         self.browser.set_window_position(0, 0)
         self.browser.set_window_size(1024, 768)
         self.browser.get(self.live_server_url + reverse("index"))
@@ -26,8 +29,10 @@ class TestSearch(StaticLiveServerTestCase):
     def test_search_index_return(self):
         """tests the user's navigation when doing a search using the search tool on the index page
         with return keys"""
-        self.s = Service("Product/tests/functional_tests/chromedriver")
-        self.browser = webdriver.Chrome(service=self.s)
+        self.s = Service(executable_path="Product/tests/functional_tests/chromedriver")
+        self.chrome_options = Options()
+        self.chrome_options.add_argument("--headless")
+        self.browser = webdriver.Chrome(service=self.s, options=self.chrome_options)
         self.browser.get(self.live_server_url + reverse("index"))
         search_input = self.browser.find_element(By.ID, "searchForm")
         search_input.send_keys("pizza")
