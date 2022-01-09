@@ -3,8 +3,11 @@ from Product.models import Product
 from User.models import CustomUser
 from Favorite.models import Favorites
 from django.core.paginator import Paginator
+import logging
 
 
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 # Create your views here.
 def search(request):
     """get the keyword in query and do a search in the product name column for all products that contain this word.
@@ -14,6 +17,10 @@ def search(request):
     paginator = Paginator(products_list, 6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
+    logger.info('New search', exc_info=True, extra={
+        # Optionally pass a request and we'll grab any information we can
+        'request': request,
+    })
     context = {
         "page_obj": page_obj,
         "nom_produit": page_obj,
