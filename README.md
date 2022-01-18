@@ -8,7 +8,7 @@ Application host on Heroku, visible at: [link to github web app](https://purbeur
 ## START
 This project uses Python and Requests library. It is advisable to use
 a virtual environment to avoid conflicts with other version of libraries.
-
+enjoy
 
 ## pre requirement
 to start the webapp, you need:
